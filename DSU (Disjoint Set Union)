@@ -1,7 +1,7 @@
 struct DSU
 {
 	int connected;
-  vector<int> sz;
+ 	vector<int> sz;
 	vector<int> parent;
 
 	void init(int n)
