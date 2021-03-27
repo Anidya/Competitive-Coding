@@ -5,7 +5,7 @@ struct segtree
 	
 	void init(int n)
 	{
-		t.assign(4*n,INT_MAX);							    //  <============
+		t.assign(4*n,INT_MAX);							//  <============
 	}
 
 	void update(int v,int tl,int tr,int id,int val)
@@ -23,22 +23,22 @@ struct segtree
 		update(2*v+1,tm+1,tr,id,val);
 		
 		
-		t[v]=min(t[2*v],t[2*v+1]);						      //  <============
+		t[v]=min(t[2*v],t[2*v+1]);						//  <============
 	}
 	
 	
 	int query(int v,int tl,int tr,int l,int r)
 	{
 		if(tl>r || tr<l)
-			return INT_MAX;							             	//  <============
+			return INT_MAX;							//  <============
 		if(l<=tl && tr<=r)
 			return t[v];
 		
 		int tm=(tl+tr)/2;
 		
-		int ans=INT_MAX;								            //  <============
-		ans=min(ans,query(2*v,tl,tm,l,r));			  	//  <============
-		ans=min(ans,query(2*v+1,tm+1,tr,l,r));			//  <============
+		int ans=INT_MAX;							//  <============
+		ans=min(ans,query(2*v,tl,tm,l,r));					//  <============
+		ans=min(ans,query(2*v+1,tm+1,tr,l,r));					//  <============
 		
 		return ans;
 	}
