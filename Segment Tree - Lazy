@@ -7,19 +7,19 @@ struct segtree
 	
 	void init(int n)
 	{
-		t.assign(4*n,0);								//  <============
+		t.assign(4*n,0);			//  <============
 		lazy.assign(4*n,false);
 		upd.assign(4*n,0);
 	}
 
 	void apply(int v, int tl, int tr, int val)
 	{
-		t[v] += val * (tr - tl + 1);        //  <==============
+		t[v] += val * (tr - tl + 1);        	//  <==============
 		
 		if(tl != tr)
 		{
 			lazy[v] = true;             
-			upd[v] += val;                    //  <==============
+			upd[v] += val;			//  <==============
 		}
 	}
 	
@@ -53,23 +53,23 @@ struct segtree
 		update(2*v, tl, tm, l, r, val);
 		update(2*v+1, tm+1, tr, l, r, val);
 		
-		t[v] = t[2*v] + t[2*v+1];                     //  <============
+		t[v] = t[2*v] + t[2*v+1];                    	 //  <============
 	}
 	
 	
 	int query(int v, int tl, int tr, int l, int r)
 	{
 		if(tl>r || tr<l)
-			return 0;                                   //  <============
+			return 0;				 //  <============
 		if(l<=tl && tr<=r)
 			return t[v];
 		
 		pushdown(v, tl, tr);
 		
-		int tm = (tl + tr)/2;
-		int ans = 0;                                  //  <============
-		ans += query(2*v, tl, tm, l, r);              //  <============
-		ans += query(2*v+1, tm+1, tr, l, r);          //  <============
+		int tm = (tl + tr)/2;	
+		int ans = 0;					//  <============
+		ans += query(2*v, tl, tm, l, r);		//  <============
+		ans += query(2*v+1, tm+1, tr, l, r);		//  <============
 		
 		return ans;
 	}
